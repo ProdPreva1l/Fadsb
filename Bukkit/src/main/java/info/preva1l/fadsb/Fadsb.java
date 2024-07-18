@@ -6,7 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
-public final class Bukkit extends JavaPlugin {
+public final class Fadsb extends JavaPlugin {
+    @Getter private static Fadsb instance;
 
     @Getter private static Logger console;
 
@@ -14,8 +15,10 @@ public final class Bukkit extends JavaPlugin {
     private Metrics metrics;
     @Override
     public void onEnable() {
+        instance = this;
         console = getLogger();
 
+        setupMetrics();
     }
 
     @Override

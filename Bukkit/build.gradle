@@ -1,16 +1,42 @@
 repositories {
     mavenCentral()
-    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    maven { url 'https://jitpack.io' }
+    maven { url "https://repo.clojars.org/" }
+    maven { url 'https://repo.papermc.io/repository/maven-snapshots/' }
     maven { url "https://oss.sonatype.org/content/groups/public/" }
+    maven { url 'https://repo.infernalsuite.com/repository/maven-snapshots/' }
+    maven { url 'https://repo.rapture.pw/repository/maven-releases/' }
 }
 
 dependencies {
     implementation project(":API")
-    compileOnly "org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT"
+    compileOnly 'io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT'
+    compileOnly 'com.infernalsuite.aswm:api:1.20.4-R0.1-SNAPSHOT'
+
+    implementation "com.github.puregero:multilib:1.2.3" // Folia & ShreddedPaper Support
+
+    implementation 'com.github.Carleslc.Simple-YAML:Simple-Yaml:1.8.4' // Configs
+
+    // Cross Server Support
+    implementation 'redis.clients:jedis:5.1.0'
+    compileOnly 'org.apache.commons:commons-pool2:2.12.0'
+
+    // Database
+    implementation 'com.zaxxer:HikariCP:5.1.0'
+    implementation('com.mysql:mysql-connector-j:8.3.0') {
+        exclude group: '*', module: '*'
+    }
+    implementation('org.mariadb.jdbc:mariadb-java-client:3.3.3') {
+        exclude group: '*', module: '*'
+    }
 }
 
 shadowJar {
-
+    relocate 'org.simple-yaml', 'info.preva1l.fadsb.libs'
+    relocate 'redis.clients', 'info.preva1l.fadsb.libs'
+    relocate 'com.zaxxer', 'info.preva1l.fadsb.libs'
+    relocate 'com.mysql', 'info.preva1l.fadsb.libs'
+    relocate 'org.mariadb', 'info.preva1l.fadsb.libs'
 
     archiveClassifier.set('')
 }

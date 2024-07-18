@@ -3,13 +3,22 @@
 # (This file can be shared between servers) #
 #############################################
 
+# Database configuration
+database:
+  # Supported Types: SQLITE, MYSQL, MARIADB, MONGODB
+  type: SQLITE
+  # Below is not required for SQLITE
+  # For MySQL and MariaDB, uri must be a JDBC string. MongoDB and MongoDB Atlas supported!
+  uri: "jdbc:mysql://username:password@127.0.0.1:3306/Fadsb"
+  database: "Fadsb" # For MongoDB Only
 
 
-# What metrics are logged to our private metrics system
-# Mainly used for debugging errors
-# Your server is assigned a unique server-id on startup
-metrics:
-  cpu: true
-  allocated-cpu: true
-  allocated-memory: true
-  system-memory: true
+# Multi-Server Configuration
+multi-server:
+  # You must NOT be using SQLITE for multiple servers.
+  enabled: false
+  # Messenger Settings
+  redis:
+    host: "127.0.0.1"
+    port: 6379
+    password: "PA55W0RD!"
