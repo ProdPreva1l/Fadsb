@@ -1,0 +1,104 @@
+plugins {
+    id 'java'
+    id 'io.github.goooler.shadow' version '8.1.8'
+}
+
+group = 'info.preva1l'
+version = '1.0'
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.github.goooler.shadow'
+
+    sourceCompatibility = 17
+    targetCompatibility = 17
+
+    compileJava.options.encoding = 'UTF-8'
+    javadoc.options.encoding = 'UTF-8'
+    javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.jetbrains:annotations:24.0.0'
+        compileOnly 'org.projectlombok:lombok:1.18.32'
+        annotationProcessor 'org.projectlombok:lombok:1.18.32'
+        annotationProcessor 'org.jetbrains:annotations:24.0.0'
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.2'
+        testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+
+        testCompileOnly 'org.jetbrains:annotations:24.1.0'
+        testCompileOnly 'org.projectlombok:lombok:1.18.32'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+    }
+
+    jar {
+        manifest {
+            attributes(
+                    'Implementation-Title': 'Fadsb',
+                    'Implementation-Version': rootProject.version,
+                    'Main-Class': 'info.preva1l.fadsb.MainClass'
+            )
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    processResources {
+        def props = [version: rootProject.version]
+        inputs.properties props
+        filteringCharset 'UTF-8'
+        filesMatching('plugin.yml') {
+            expand props
+        }
+    }
+}
+
+subprojects {
+    version rootProject.version
+    archivesBaseName = "${rootProject.name}-${project.name.capitalize()}"
+
+    task generateJavadoc(type: Javadoc) {
+        sourceSets.main.java.srcDirs.each { dir ->
+            source(dir)
+        }
+        classpath += configurations.compileClasspath
+        options.addStringOption('Xdoclint:none', '-quiet')
+        destinationDir = file("$buildDir/docs/javadoc")
+    }
+
+    task javadocJar(type: Jar, dependsOn: generateJavadoc) {
+        dependsOn generateJavadoc
+        archiveFileName = "${rootProject.name}-${project.name.capitalize()}-javadoc.jar"
+        from generateJavadoc.destinationDir
+    }
+
+    javadoc {
+        if (JavaVersion.current().isJava9Compatible()) {
+            options.addBooleanOption('html5', true)
+        }
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        dependsOn classes
+        archiveFileName = "${rootProject.name}-${project.name.capitalize()}-sources.jar"
+        from sourceSets.main.allSource
+    }
+
+    shadowJar {
+        destinationDirectory.set(file("$rootDir/target"))
+        archiveClassifier.set('')
+    }
+
+    jar.dependsOn shadowJar
+    clean.delete("${rootDir}/target")
+}
+
+logger.lifecycle("Building ${rootProject.name.capitalize()} ${version}")

@@ -1,0 +1,15 @@
+#############################################
+#         Main Plugin Configuration         #
+# (This file can be shared between servers) #
+#############################################
+
+
+
+# What metrics are logged to our private metrics system
+# Mainly used for debugging errors
+# Your server is assigned a unique server-id on startup
+metrics:
+  cpu: true
+  allocated-cpu: true
+  allocated-memory: true
+  system-memory: true

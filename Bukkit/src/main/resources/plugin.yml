@@ -1,0 +1,4 @@
+name: Bukkit
+version: '${version}'
+main: info.preva1l.fadsb.Bukkit
+api-version: '1.20'

@@ -1,0 +1,12 @@
+#########################################
+#          Server configuration         #
+# (This file must be unique per-server) #
+#########################################
+
+# Make sure this is unique and matches the server name in bungeecord/velocity
+# (Only modify if using in cross-server mode)
+server-name: "skyblock-main-01"
+
+
+# DO NOT MODIFY (Used for error logging and debugging)
+server-id: "GENERATED AUTOMATICALLY"

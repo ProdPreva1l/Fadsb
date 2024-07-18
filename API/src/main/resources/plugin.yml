@@ -1,0 +1,4 @@
+name: API
+version: '${version}'
+main: info.preva1l.fadsb.API
+api-version: '1.20'
