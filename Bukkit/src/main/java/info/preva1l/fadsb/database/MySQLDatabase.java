@@ -1,6 +1,6 @@
 package info.preva1l.fadsb.database;
 
-public class SQLiteDatabase implements StorageDatabase {
+public class MySQLDatabase implements StorageDatabase {
     @Override
     public void connect() {
 

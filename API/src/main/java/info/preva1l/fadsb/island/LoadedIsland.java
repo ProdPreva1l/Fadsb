@@ -1,11 +1,14 @@
 package info.preva1l.fadsb.island;
 
 import info.preva1l.fadsb.user.User;
+import lombok.Builder;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+@Getter
 public abstract class LoadedIsland extends Island {
     private final String loadedServer;
 

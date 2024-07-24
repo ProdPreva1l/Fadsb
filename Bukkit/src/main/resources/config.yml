@@ -1,7 +1,27 @@
-#############################################
-#         Main Plugin Configuration         #
-# (This file can be shared between servers) #
-#############################################
+##############################################
+#         Main Plugin Configuration          #
+# (This file must be shared between servers) #
+##############################################
+
+# World Management Configuration
+world-management:
+  # What world manager to use.
+  # (Supported Types: BUKKIT, SLIME)
+  manager: BUKKIT
+  # The following config only affects SLIME (AdvancedSlimeWorldManager [ASWM])
+  slime:
+    # What ever your main storage is in ASWM sources.yml configuration
+    # (If yu are using multiple server setup you must NOT use file.)
+    # (Support: FILE, MYSQL, MONGODB)
+    storage-type: FILE
+    # If you ALSO have redis storage setup in ASWM sources.yml you can enable this
+    # If caching is enabled when we unload islands they will be stored in redis for faster access
+    # After the defined time they will be moved to the primary storage type
+    # (It is not recommended to use world caching if you are using file storage.)
+    caching:
+      enabled: false
+      # How long the island should be cached for (in days)
+      length: 3
 
 # Database configuration
 database:
@@ -11,14 +31,3 @@ database:
   # For MySQL and MariaDB, uri must be a JDBC string. MongoDB and MongoDB Atlas supported!
   uri: "jdbc:mysql://username:password@127.0.0.1:3306/Fadsb"
   database: "Fadsb" # For MongoDB Only
-
-
-# Multi-Server Configuration
-multi-server:
-  # You must NOT be using SQLITE for multiple servers.
-  enabled: false
-  # Messenger Settings
-  redis:
-    host: "127.0.0.1"
-    port: 6379
-    password: "PA55W0RD!"

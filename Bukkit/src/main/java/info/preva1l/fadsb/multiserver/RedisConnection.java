@@ -5,4 +5,8 @@ import redis.clients.jedis.JedisPool;
 
 public interface RedisConnection extends DatabaseConnection {
     JedisPool getJedisPool();
+
+    default void destroy() {
+        getJedisPool().destroy();
+    }
 }

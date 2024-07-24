@@ -6,14 +6,20 @@ repositories {
     maven { url "https://oss.sonatype.org/content/groups/public/" }
     maven { url 'https://repo.infernalsuite.com/repository/maven-snapshots/' }
     maven { url 'https://repo.rapture.pw/repository/maven-releases/' }
+    maven { url 'https://repo.william278.net/snapshots' }
 }
 
 dependencies {
     implementation project(":API")
     compileOnly 'io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT'
-    compileOnly 'com.infernalsuite.aswm:api:1.20.6-R0.1-SNAPSHOT'
 
-    implementation 'com.github.Carleslc.Simple-YAML:Simple-Yaml:1.8.4' // Configs
+    compileOnly 'com.infernalsuite.aswm:api:1.20.6-R0.1-SNAPSHOT' // ASWM Worlds
+
+    // Folia & ShreddedPaper support
+
+    implementation 'net.william278:desertwell:2.0.4' // Update Checker & About Page
+
+    implementation 'de.exlll:configlib-yaml:4.5.0' // Configs
 
     // Cross Server Support
     implementation 'redis.clients:jedis:5.1.0'

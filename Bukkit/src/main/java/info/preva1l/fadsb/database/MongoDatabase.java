@@ -1,6 +1,6 @@
 package info.preva1l.fadsb.database;
 
-public class SQLiteDatabase implements StorageDatabase {
+public class MongoDatabase implements StorageDatabase {
     @Override
     public void connect() {
 

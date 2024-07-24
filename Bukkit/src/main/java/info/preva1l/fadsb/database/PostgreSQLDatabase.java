@@ -1,6 +1,6 @@
 package info.preva1l.fadsb.database;
 
-public class SQLiteDatabase implements StorageDatabase {
+public class PostgreSQLDatabase implements StorageDatabase {
     @Override
     public void connect() {
 

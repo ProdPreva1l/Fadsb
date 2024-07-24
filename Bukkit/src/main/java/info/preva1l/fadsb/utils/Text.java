@@ -2,6 +2,7 @@ package info.preva1l.fadsb.utils;
 
 import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.md_5.bungee.api.ChatColor;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +13,10 @@ import java.util.regex.Pattern;
 @UtilityClass
 public final class Text {
     private static final Pattern HEX_PATTERN = Pattern.compile("&#(\\w{5}[0-9a-fA-F])");
+
+    public String miniToString(TextComponent textComponent) {
+        return MiniMessage.miniMessage().serialize(textComponent);
+    }
 
     /**
      * Colorize a legacy string.

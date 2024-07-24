@@ -22,8 +22,8 @@ public final class HeartBeat implements RedisConnection {
     private final JedisPool jedisPool;
     private static Map<String, String> servers = new ConcurrentHashMap<>();
 
-    public HeartBeat() {
-        this.plugin = Fadsb.getInstance();
+    public HeartBeat(Fadsb plugin) {
+        this.plugin = plugin;
 
         final JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxIdle(1);
@@ -44,11 +44,6 @@ public final class HeartBeat implements RedisConnection {
 
         startGet();
         startPost();
-    }
-
-    @Override
-    public void destroy() {
-        getJedisPool().destroy();
     }
 
     private void startGet() {

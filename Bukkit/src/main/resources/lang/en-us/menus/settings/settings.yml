@@ -1,1 +1,15 @@
 title: "&#286aa1&lSettings"
+
+lang:
+  language:
+    icon: "OAK_SIGN"
+    model-data: 0
+    name: "&#9667e6&lChange Language"
+    lore:
+      - "&7Click to change your language!"
+      - "&#704EABCurrent: &f%selected_lang%"
+
+gui-size: 6
+
+layout:
+  '0': "FILLER"

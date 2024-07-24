@@ -1,0 +1,11 @@
+meta:
+  name: "English (US)"
+  translator: "Preva1l"
+
+prefix: "&#9667e6&lSkyblock &r"
+
+errors:
+  player-not-found: "&#D63C3CPlayer not found!"
+  player-offline: "&#D63C3CPlayer is not online!"
+  # For a full list of error codes check https://github.com/ProdPreva1l/Fadsb/blob/master/ERROR_CODES.md
+  unknown-error: "&#D63C3CAn error has occurred! &7(%error_code%)"

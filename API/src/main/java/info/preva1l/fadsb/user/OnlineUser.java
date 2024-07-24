@@ -13,8 +13,6 @@ public abstract class OnlineUser extends User implements CommandUser {
         super(username, uniqueId);
     }
 
-    public abstract void sendMessage(@NotNull String message);
-
     public abstract void sendActionBar(@NotNull String message);
 
     public abstract void sendTitle(@NotNull String titleText, @Nullable String subTitle, long fadeIn, long stay, long fadeOut);
